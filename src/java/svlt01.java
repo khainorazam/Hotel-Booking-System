@@ -45,7 +45,7 @@ public class svlt01 extends HttpServlet {
         
         //step 6 : process the result
         while (rs.next()){
-            out.println("<h4> user id : " +rs.getString(1) +" user name :" +rs.getString(2)  +" Level : " +rs.getString("level")+"</h4>");
+            out.println("<h4>User name :" +rs.getString(1)  +" Level : " +rs.getString("level")+" Country: " + rs.getString("country") + "</h4>");
         }
         //step 7: close connection
         conn.close();
