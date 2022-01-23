@@ -143,7 +143,8 @@
             <div class="thanks-msg">Thanks for your feedback !!!</div>
                 
             <div class="star-input">
-                
+                <form action="RatingServlet" method="get">
+                    
                 <input type="radio" name="rating" id="rating-5" value="5">
                 <label for="rating-5" class="fas fa-star"></label>
                 <input type="radio" name="rating" id="rating-4" value="4">
@@ -159,7 +160,7 @@
                     <textarea id="review" name="review" rows="4" cols="50" placeholder="Please enter review here"></textarea> 
                 </div>
                 
-                <form action="RatingServlet" method="get">
+                
                     <span class="rating-reaction"></span>
                     <button type="submit" class="submit-rating">Submit</button>
                 </form>
