@@ -44,6 +44,7 @@
                 </thead>
                 <tbody>
                     <%
+                       
                     String driver= "com.mysql.jdbc.Driver";
                     String database= "owohotel";
                     String url= "jdbc:mysql://localhost:3306/owohotel";

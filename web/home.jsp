@@ -1,8 +1,3 @@
-<%-- 
-    Document   : home
-    Created on : Jan 2, 2022, 2:34:02 AM
-    Author     : FAIZ
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
