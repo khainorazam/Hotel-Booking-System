@@ -27,16 +27,19 @@ String driver= "com.mysql.jdbc.Driver";
         String user= "root";
         String password = "";
         
-String n=request.getParameter("username");  
+String un=request.getParameter("username");  
 String p=request.getParameter("password");  
+String n=request.getParameter("name");  
+String e=request.getParameter("email");  
+String pn=request.getParameter("phoneno");  
 String l=request.getParameter("level");  
 String s=request.getParameter("state");
         
 Class.forName("com.mysql.jdbc.Driver");  
 Connection conn=DriverManager.getConnection( url, user, password);  
 
-String sqlinsert = "insert into user (username,password,level,state)values"
-        + "('"     + n + "','"   + p + "','"     + l + "','"   + s  + "')";
+String sqlinsert = "insert into user (username,password,name,email,phoneno,level,state)values"
+        + "('"     + un + "','"   + p + "','"  + n + "','" + e + "','" + pn + "','"    + l + "','"   + s  + "')";
   
 log(sqlinsert);
           
