@@ -1,62 +1,75 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import java.io.*;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.sql.*;
+import java.sql.*;
+import java.util.*;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+public class SearchServlet extends HttpServlet{ 
+ 
+ public void doPost(HttpServletRequest request, 
+  HttpServletResponse response)
+  throws ServletException,IOException{
+  response.setContentType("text/html");
+  PrintWriter out = response.getWriter();
 
-/**
- *
- * @author FAIZ
- */
-@WebServlet(urlPatterns = {"/SearchServlet"})
-public class SearchServlet extends HttpServlet {
+  System.out.println("MySQL Connect Example.");
+  
+  
+        String driver= "com.mysql.jdbc.Driver";
+        String database= "owohotel";
+        String url= "jdbc:mysql://localhost:3306/owohotel";
+        String user= "root";
+        String password = "";
+
+  
+  Statement st;
+  try {
+    Class.forName(driver).newInstance();
+    Connection conn = DriverManager.getConnection(url, user, password);
+    System.out.println("Connected to the database");
+    String  hotel_name  = request.getParameter("hotel_name");
+    String  location  = request.getParameter("location");
+    String  room  = request.getParameter("room");
+
+    ArrayList al=null;
+    ArrayList searchlist =new ArrayList();
+    String query = "select * from hotel where hotel_name='"+hotel_name+"' or location='"+location+"' or room='"+room+"' order by hotel";
+    System.out.println("query " + query);
+    st = conn.createStatement();
+    ResultSet  rs = st.executeQuery(query);
 
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    while(rs.next()){
+    al  = new ArrayList();
+
+    al.add(rs.getString(1));
+    al.add(rs.getString(2));
+    al.add(rs.getString(3));
+    al.add(rs.getString(4));
+    al.add(rs.getString(5));
+    al.add(rs.getString(6));
+    al.add(rs.getString(7));
+    al.add(rs.getString(8));
+    al.add(rs.getString(10));
+    System.out.println("al :: "+al);
+    searchlist.add(al);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        processRequest(request, response);
+    request.setAttribute("searchlist",searchlist);
+
+   System.out.println("search " + searchlist);
+
+    // out.println("emp_list " + emp_list);
+
+    String nextJSP = "/viewSearch.jsp";
+    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
+    dispatcher.forward(request,response);
+    conn.close();
+    System.out.println("Disconnected from database");
+    
+  } catch (Exception e) {
+    e.printStackTrace();
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+  }
 }
