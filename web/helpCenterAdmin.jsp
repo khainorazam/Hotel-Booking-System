@@ -6,13 +6,18 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Help Center (User)</title>
+        <title>Help Center (Admin)</title>
     </head>
     <body>
         
         
-        <h1>Help Center</h1>
-        <!-- Display link to answers or display answers terus-->
+        <h1>Help Center (Admin)</h1>
+        <!-- 1. Display all messages
+        2. Pick one messageID
+        3. Put in reply and submit
+        4. Send to servlet to process into database
+        -->
+        
         <form action="helpsvlt">
             <label for="question">Hi! How can we help?</label>
             <br>

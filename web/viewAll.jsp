@@ -24,10 +24,13 @@
         <table class="table table-dark">
             <thead>
                 <tr>
-                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Name</th>
                     <th scope="col">Password</th>
+                    <th scope="col">Phone No.</th>
                     <th scope="col">Level</th>
-                    <th scope="col">Country</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">E-Wallet Balance</th>
                 </tr>
             </thead>
             
@@ -62,11 +65,14 @@
         %>
         
         <tr>
-                    <th scope="row"><%=rs.getString("username")%></th>
+                    <th scope="row"><%=rs.getString("email")%></th>
                     
+                    <td><%=rs.getString("name")%></td>
                     <td><%=rs.getString("password")%></td>
-                    <td><%=rs.getString("level")%></td>
-                    <td><%=rs.getString("country")%></td>
+                    <td><%=rs.getString("phone")%></td>
+                    <td><%=rs.getInt("level")%></td>
+                    <td><%=rs.getString("address")%></td>
+                    <td><%=rs.getDouble("ewallet")%></td>
                 </tr>
         
                 <%
