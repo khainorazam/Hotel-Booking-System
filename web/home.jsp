@@ -1,37 +1,78 @@
-
+<%@page import="java.io.OutputStream"%>
+<%@page import="java.sql.Blob"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home Page</title>
-         
-        <style>
-            .parent {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-template-rows: repeat(2, 1fr);
-            grid-column-gap: 0px;
-            grid-row-gap: 0px;
-            }
-
-            .div1 { grid-area: 1 / 1 / 2 / 2; }
-            .div2 { grid-area: 1 / 2 / 2 / 3; }
-            .div3 { grid-area: 2 / 1 / 3 / 2; }
-            .div4 { grid-area: 2 / 2 / 3 / 3; }
-        </style>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<!--        <link rel="stylesheet" href="style.css">-->
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" crossorigin="anonymous">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <%@include file="header.jsp" %>
-        <h1>HOMEPAGE</h1>
+        <%String email=(String)session.getAttribute("email");%>
         
-       <div class="parent">
-           <div class="div1"> <a href=""><h2>Div 1</h2></a> </div>
-            <div class="div2"> <a href=""><h2>Div 2</h2></a> </div>
-            <div class="div3"> <a href=""><h2>Div 3</h2></a></div>
-           <div class="div4"> <a href=""><h2>Div 4</h2></a></div>
-        </div>
+        <%@include file="header.jsp" %>
+        
+        
+			
+                    <%
+                        String driver = "com.mysql.jdbc.Driver";
+                        String connectionUrl = "jdbc:mysql://localhost:3306/";
+                        String database = "owohotel";
+                        String userid = "root";
+                        String password = "";
+                        
+                        //String id = " ";
+                        
+                        try {
+                            Class.forName(driver);
+                            Connection conn = DriverManager.getConnection(connectionUrl+database,userid,password);
+                           
+                            //prepared statement
+                            String sqlselect = "select * from room";
+                            PreparedStatement ps = conn.prepareStatement(sqlselect);
+   
+                            ResultSet rs = ps.executeQuery();
+                            
+                            while(rs.next()){
+                                
+                            %>    
+                    
+                            
+            <div class="container-fluid " >
+                <div class="row justify-content-center" >
+                    <div class="col-5 mt-3">
+                        <div class="card">
+                            <div class="card-horizontal">
+                                <div class="img-square-wrapper">
+                                    <img class="" src="img/<%=rs.getString("picture")%>" alt="hotel image" width="300" height="180">
+                                </div>
+                                <div class="card-body">
+                                    <h4 class="card-title"><%=rs.getString("roomType")%></h4>
+                                    <h5 class="card-title">RM <%=rs.getString("price")%></h5>
+                                    <h5 class="card-title"><%=rs.getString("no_of_pax")%>pax</h5>
+                                    <%String roomType=(String)session.getAttribute("roomType");%>
+                                    <a href=""><button>Book</button></a>
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+                    <%
+                            }
+       
+                        }
+                        catch(Exception ex) {
+                            ex.printStackTrace();
+                        }
+                    %>
+                    
     </body>
 </html>

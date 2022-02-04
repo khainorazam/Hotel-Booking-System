@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet(urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
@@ -19,6 +20,8 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
+        
+        HttpSession session=request.getSession();  
         
         String driver= "com.mysql.jdbc.Driver";
         String database= "owohotel";
@@ -29,7 +32,7 @@ public class LoginServlet extends HttpServlet {
         //accept paramaters from index.html page
         String u=request.getParameter("email");  
         String p=request.getParameter("password"); 
-         
+        String userdbName;
         //database
         try{
 //            out.println(u+p);
@@ -41,10 +44,13 @@ public class LoginServlet extends HttpServlet {
         ResultSet rs = stm.executeQuery(slt);
         
         
+        
         log(slt);
         
         if(rs.next()){
             //if username and password true
+            userdbName = rs.getString("email");
+            session.setAttribute("email", u);
             response.sendRedirect("home.jsp");
         }
         else{
