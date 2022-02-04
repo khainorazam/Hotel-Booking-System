@@ -167,9 +167,8 @@
         
     </head>
     <body>
-        <%! 
-            String valid="false";
-//            String valid=(String)session.getAttribute("valid");
+        <%
+            String valid=(String)session.getAttribute("valid");
         %> 
         <div class="container">
 	<div>
@@ -179,8 +178,8 @@
                 <%if(valid.equals("true")){%>
                <img src="https://www.nicepng.com/png/detail/172-1723156_heart-love-red-element-wedding-icon-love-heart.png" alt="Snow" style="width:2%" class="wishlist">
                <%} else{%>
-               <a href="" >
-                   <img src="https://www.clipartmax.com/png/full/78-788944_wish-list-best-wish-christmas-icon-wish-list.png" onclick="myFunction()" alt="Snow" style="width:2%" class="wishlist" id="WS">
+               <a href="">
+                   <img src="https://www.clipartmax.com/png/full/78-788944_wish-list-best-wish-christmas-icon-wish-list.png" alt="Snow" style="width:2%" class="wishlist" id="WS">
                </a>
                
                <%}%>
@@ -217,9 +216,6 @@
             value < 2 ? value = 2 : '';
             value--;
             document.getElementById('number').value = value;
-            }
-            function myFunction() {
-            document.getElementById("WS").src = "https://www.nicepng.com/png/detail/172-1723156_heart-love-red-element-wedding-icon-love-heart.png";
             }
          
         </script>

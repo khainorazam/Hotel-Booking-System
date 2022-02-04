@@ -31,12 +31,13 @@ public class wishlistValidation extends HttpServlet {
         String user= "root";
         String password = "";
         
+        
         String email=request.getParameter("email");  
         String roomType=request.getParameter("roomType"); 
         
         try{
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection(url, user, password);
+        Connection conn = DriverManager.getConnection(url+database, user, password);
         
         Statement stm = conn.createStatement();
         String slt = ("select * from wishlist where email='"+email+"' and roomType='"+roomType+"'");
