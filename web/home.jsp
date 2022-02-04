@@ -44,7 +44,8 @@
                                 
                             %>    
                     
-                            
+            <form action="wishlistValidation" method="get"> 
+                                                              
             <div class="container-fluid " >
                 <div class="row justify-content-center" >
                     <div class="col-5 mt-3">
@@ -57,14 +58,17 @@
                                     <h4 class="card-title"><%=rs.getString("roomType")%></h4>
                                     <h5 class="card-title">RM <%=rs.getString("price")%></h5>
                                     <h5 class="card-title"><%=rs.getString("no_of_pax")%>pax</h5>
-                                    <%String roomType=(String)session.getAttribute("roomType");%>
-                                    <a href=""><button>Book</button></a>
+                                    
+                                    <input name="roomType" value="<%=rs.getString("roomType")%>" hidden>
+                                    <input name="email" value="<%=email%>" hidden>
+                                    <input type="submit" value="book" >
                                 </div>
                             </div>  
                         </div>
                     </div>
                 </div>
             </div>
+                </form> 
                     <%
                             }
        
