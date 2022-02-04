@@ -44,10 +44,12 @@ public class wishlistValidation extends HttpServlet {
         ResultSet rs = stm.executeQuery(slt);
         
         HttpSession session=request.getSession(); 
-        
-       //log(slt);
+
+        session.setAttribute("email", email);
+        session.setAttribute("roomType", roomType);
         
         if(rs.next()){
+            
             session.setAttribute("valid","true");
             response.sendRedirect("booking.jsp");
         }

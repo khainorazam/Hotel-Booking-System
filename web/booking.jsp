@@ -167,21 +167,26 @@
         
     </head>
     <body>
+        
         <%
             String valid=(String)session.getAttribute("valid");
+            String email=(String)session.getAttribute("email");
+            String roomType=(String)session.getAttribute("roomType");
         %> 
+        
         <div class="container">
 	<div>
             <h2><strong>Hotel</strong></h2><br>
             <div class="row">
                 <img src="https://th.bing.com/th/id/OIP.2yafwQfSIm9scaOmB6VscgHaFj?pid=ImgDet&rs=1" alt="Snow" style="width:40%" class="dp">
                 <%if(valid.equals("true")){%>
-               <img src="https://www.nicepng.com/png/detail/172-1723156_heart-love-red-element-wedding-icon-love-heart.png" alt="Snow" style="width:2%" class="wishlist">
+               <img src="https://www.nicepng.com/png/detail/172-1723156_heart-love-red-element-wedding-icon-love-heart.png" style="width:2%" class="wishlist">
                <%} else{%>
-               <a href="">
-                   <img src="https://www.clipartmax.com/png/full/78-788944_wish-list-best-wish-christmas-icon-wish-list.png" alt="Snow" style="width:2%" class="wishlist" id="WS">
-               </a>
-               
+               <form action="home.jsp" method="get"> 
+                   <input name="email" value="<%=email%>" hidden>
+                   <input name="roomType" value="<%=roomType%>" hidden>
+                   <input type="image" src="https://www.clipartmax.com/png/full/78-788944_wish-list-best-wish-christmas-icon-wish-list.png" alt="Submit" class="wishlist" width=2%>
+               </form> 
                <%}%>
                 <br>
                 <div>Name:  </div><br>
