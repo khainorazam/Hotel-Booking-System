@@ -1,6 +1,3 @@
-package RegisterController;
-
-//import .*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -14,9 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
  
- @WebServlet(urlPatterns = {"/register"})
-public class register extends HttpServlet {  
-protected void doGet(HttpServletRequest request, HttpServletResponse response)  
+ @WebServlet(urlPatterns = {"/HelpUsersvlt"})
+public class HelpUsersvlt extends HttpServlet {  
+protected void doPost(HttpServletRequest request, HttpServletResponse response)  
             throws ServletException, IOException {  
   
 response.setContentType("text/html;charset=UTF-8");  
@@ -31,19 +28,15 @@ String driver= "com.mysql.jdbc.Driver";
         String password = "";
         
   
-String p=request.getParameter("password");  
-String n=request.getParameter("name");  
-String e=request.getParameter("email");  
-String pn=request.getParameter("phoneno");  
-String l=request.getParameter("level");  
-String add=request.getParameter("address");
-double ewallet= 0.00;
+String q=request.getParameter("question");  
+String e=request.getParameter("email");
+
         
 Class.forName("com.mysql.jdbc.Driver");  
 Connection conn=DriverManager.getConnection( url, user, password);  
 
-String sqlinsert = "insert into user (password,name,email,phone,level,address,ewallet_balance)values"
-        + "('"   + p + "','"  + n + "','" + e + "','" + pn + "','"    + l + "','"   + add  + "','" + ewallet + "')";
+String sqlinsert = "insert into helpcenter (email,message)values"
+        + "('"   + e + "','"  + q + "')";
   
 log(sqlinsert);
           
@@ -51,7 +44,8 @@ Statement stmt = conn.createStatement();
 stmt.executeUpdate(sqlinsert);
 
 conn.close();
-response.sendRedirect("viewAll.jsp");
+
+response.sendRedirect("helpCenterUser.jsp?name=Sent!");
       
           
 }

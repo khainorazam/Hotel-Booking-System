@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
@@ -11,9 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
  
- @WebServlet(urlPatterns = {"/helpsvlt"})
-public class helpsvlt extends HttpServlet {  
-protected void doGet(HttpServletRequest request, HttpServletResponse response)  
+ @WebServlet(urlPatterns = {"/HelpAdminServlet"})
+public class HelpAdminServlet extends HttpServlet {  
+protected void doPost(HttpServletRequest request, HttpServletResponse response)  
             throws ServletException, IOException {  
   
 response.setContentType("text/html;charset=UTF-8");  
@@ -28,24 +29,26 @@ String driver= "com.mysql.jdbc.Driver";
         String password = "";
         
   
-String q=request.getParameter("question");  
-String e=request.getParameter("email");
+String r=request.getParameter("reply");  
+String hcid=request.getParameter("id");
 
         
 Class.forName("com.mysql.jdbc.Driver");  
 Connection conn=DriverManager.getConnection( url, user, password);  
 
-String sqlinsert = "insert into helpcenter (email,message)values"
-        + "('"   + e + "','"  + q + "')";
-  
-log(sqlinsert);
-          
-Statement stmt = conn.createStatement();
-stmt.executeUpdate(sqlinsert);
 
+String sqlupdate = "update helpcenter set reply = ? where hcID = ?";
+PreparedStatement ps = conn.prepareStatement(sqlupdate);
+        ps.setString(1, r);
+        ps.setString(2, hcid);
+        ps.executeUpdate();
+        
+        log(sqlupdate);  
+
+          
 conn.close();
 
-response.sendRedirect("helpCenterUser.jsp?name=Sent!");
+response.sendRedirect("helpCenterAdmin.jsp?name=Sent!");
       
           
 }

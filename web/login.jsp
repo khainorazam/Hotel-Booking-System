@@ -93,7 +93,7 @@ span.psw {
                     <input type="checkbox" checked="checked" name="remember"> Remember me
                   </label>-->
 
-                  <a href="register.html">Don't have an account? Register now!</a>
+                  <a href="register.jsp">Don't have an account? Register now!</a>
                 </div>
 
                 <div class="container" style="background-color:">
