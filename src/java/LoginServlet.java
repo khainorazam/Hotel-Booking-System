@@ -27,7 +27,7 @@ public class LoginServlet extends HttpServlet {
         String password = "";
         
         //accept paramaters from index.html page
-        String u=request.getParameter("username");  
+        String u=request.getParameter("email");  
         String p=request.getParameter("password"); 
          
         //database
@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
         Connection conn = DriverManager.getConnection(url, user, password);
         
         Statement stm = conn.createStatement();
-        String slt = ("select * from user where username='"+u+"' and password='"+p+"'");
+        String slt = ("select * from user where email='"+u+"' and password='"+p+"'");
         ResultSet rs = stm.executeQuery(slt);
         
         
