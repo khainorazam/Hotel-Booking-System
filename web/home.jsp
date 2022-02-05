@@ -19,8 +19,15 @@
         
         <%@include file="header.jsp" %>
         
-        
-			
+        <div class="container-fluid " >
+                <div class="row justify-content-center" >
+                    <div class="col-5 mt-3">
+                        <div class="card" style="background-color: #D3D3D3; border-color:#D3D3D3; ">
+                            <h4 style="text-align: center">Room List</h4>
+			</div>
+                            </div>  
+                        </div>
+        </div>
                     <%
                         String driver = "com.mysql.jdbc.Driver";
                         String connectionUrl = "jdbc:mysql://localhost:3306/";
@@ -59,9 +66,11 @@
                                     <h5 class="card-title">RM <%=rs.getString("price")%></h5>
                                     <h5 class="card-title"><%=rs.getString("no_of_pax")%>pax</h5>
                                     
+                                    <input name="price" value="<%=rs.getString("price")%>" hidden>
+                                    <input name="quantity" value="<%=rs.getString("quantity")%>" hidden>
                                     <input name="roomType" value="<%=rs.getString("roomType")%>" hidden>
                                     <input name="email" value="<%=email%>" hidden>
-                                    <input type="submit" value="book" >
+                                    <input type="submit" value="Book" >
                                 </div>
                             </div>  
                         </div>
