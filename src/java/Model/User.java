@@ -7,10 +7,6 @@ package Model;
 
 import java.io.Serializable;
 
-/**
- *
- * @author khain
- */
 public class User implements Serializable {
     String name;
     String email;
@@ -35,6 +31,5 @@ public class User implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
-    
     
 }

@@ -57,10 +57,11 @@ public class LoginServlet extends HttpServlet {
 
                 if (userType.equals("1")) {
                     session.setAttribute("email", u);
-                    response.sendRedirect("home.jsp");
+                    response.sendRedirect("homeadmin.jsp");
                     
                 } else {
-                    response.sendRedirect("homeadmin.jsp");
+                    session.setAttribute("email", u);
+                    response.sendRedirect("home.jsp");
                 }
 
                 

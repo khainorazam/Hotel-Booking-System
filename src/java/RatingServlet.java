@@ -1,4 +1,7 @@
 
+import DAO.RatingDAO;
+import DAO.RatingDAOImpl;
+import Model.Rating;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -14,45 +17,29 @@ import javax.servlet.http.HttpSession;
 @WebServlet(urlPatterns = {"/RatingServlet"})
 public class RatingServlet extends HttpServlet {
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        try {
+        
             HttpSession session = request.getSession();
             String email = (String) session.getAttribute("email");
 
-            String driver = "com.mysql.jdbc.Driver";
-            String database = "owohotel";
-            String url = "jdbc:mysql://localhost:3306/owohotel";
-            String user = "root";
-            String password = "";
-
             String rating = request.getParameter("rating");
             String review = request.getParameter("review");
-//int id=1;
-//id++;
+
             String roomType = "single";
+            
+            RatingDAO dao = new RatingDAOImpl();
+            Rating i = new Rating(email,rating,review, roomType);
+        
+            dao.insert(i);
 
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection(url, user, password);
-
-            String sqlinsert = "insert into rating (email,roomType,rating,review)values"
-                    + "('" + email + "','" + roomType + "','" + rating + "','" + review + "')";
-
-            log(sqlinsert);
-
-            Statement stmt = conn.createStatement();
-            stmt.executeUpdate(sqlinsert);
-
-            conn.close();
             response.sendRedirect("home.jsp");
-
-        } catch (Exception ex) {
-            ex.printStackTrace(out);
-        }
+        
     }
 
 }

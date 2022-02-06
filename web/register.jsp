@@ -17,7 +17,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     </head>
 <body>  
-    <%@include file="indexheader.jsp" %>
+
     <div class="container">
         <h1>Register</h1>
         <br/>
