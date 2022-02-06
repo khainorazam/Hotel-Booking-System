@@ -20,49 +20,61 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        
-        HttpSession session=request.getSession();  
-        
-        String driver= "com.mysql.jdbc.Driver";
-        String database= "owohotel";
-        String url= "jdbc:mysql://localhost:3306/owohotel";
-        String user= "root";
+
+        HttpSession session = request.getSession();
+
+        String useremail;
+        String userpass;
+        String userType;
+
+        String driver = "com.mysql.jdbc.Driver";
+        String database = "owohotel";
+        String url = "jdbc:mysql://localhost:3306/owohotel";
+        String user = "root";
         String password = "";
-        
+
         //accept paramaters from index.html page
-        String u=request.getParameter("email");  
-        String p=request.getParameter("password"); 
-        String userdbName;
+        String u = request.getParameter("email");
+        String p = request.getParameter("password");
+
         //database
-        try{
+        try {
 //            out.println(u+p);
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection(url, user, password);
-        
-        Statement stm = conn.createStatement();
-        String slt = ("select * from user where email='"+u+"' and password='"+p+"'");
-        ResultSet rs = stm.executeQuery(slt);
-        
-        
-        
-        log(slt);
-        
-        if(rs.next()){
-            //if username and password true
-            userdbName = rs.getString("email");
-            session.setAttribute("email", u);
-            response.sendRedirect("home.jsp");
-        }
-        else{
-            //wrong username and password
-            out.println("Wrong username and password...");
-        }
-        conn.close();
-        
-        }catch(ClassNotFoundException | SQLException e){
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(url, user, password);
+
+            Statement stm = conn.createStatement();
+            String slt = ("select * from user where email='" + u + "' and password='" + p + "'");
+            ResultSet rs = stm.executeQuery(slt);
+
+            log(slt);
+
+            if (rs.next()) {
+                //if username and password true
+                useremail = rs.getString("email");
+                userpass = rs.getString("password");
+                userType = rs.getString("level");
+
+                if (userType.equals("1")) {
+                    session.setAttribute("email", u);
+                    response.sendRedirect("home.jsp");
+                    
+                } else {
+                    response.sendRedirect("homeadmin.jsp");
+                }
+
+                
+                
+            } else {
+                //wrong username and password
+                out.println("Wrong username and password...");
+            }
+            conn.close();
+
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
         }
-        
+
     }
 
     /**

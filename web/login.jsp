@@ -67,42 +67,57 @@ span.psw {
      width: 100%;
   }
 }   
+
+    .login-form {
+		width: 340px;
+    	margin: 50px auto;
+	}
+    .login-form form {
+    	margin-bottom: 15px;
+        background: #f7f7f7;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+    }
+    .login-form h2 {
+        margin: 0 0 15px;
+    }
+    .form-control, .btn {
+        min-height: 38px;
+        border-radius: 2px;
+    }
+    .btn {        
+        font-size: 15px;
+        font-weight: bold;
+        background-color: #3500A6;
+    }
         </style>    
     
     </head>
     <body>
         
+        <%@include file="indexheader.jsp" %>
         
         
-        <div class="parent">
-            <div class="div1">
-                <form action="LoginServlet" method="post">
-                <div class="imgcontainer">
-                  <img src="img/owo.png" alt="Avatar" class="avatar">
-                </div>
-
-                <div class="container">
-                  <label for="uname"><b>Username</b></label>
-                  <input type="text" placeholder="Enter Email" name="email" required>
-
-                  <label for="psw"><b>Password</b></label>
-                  <input type="password" placeholder="Enter Password" name="password" required>
-
-                  <button type="submit">Login</button>
-<!--                  <label>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me
-                  </label>-->
-
-                  <a href="register.jsp">Don't have an account? Register now!</a>
-                </div>
-
-                <div class="container" style="background-color:">
-                  <!--<button type="button" class="cancelbtn">Cancel</button>-->
-                  <!--<span class="psw">Forgot <a href="#">password?</a></span>-->
-                </div>
-                </form>
-            </div>
+        
+        <div class="login-form">
+        <form action="LoginServlet" method="post">
+        <h2 class="text-center">Log in</h2>       
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Email" name="email" required="required">
         </div>
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" name="password" required="required">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+        </div>
+<!--        <div class="clearfix">
+            <label class="pull-left checkbox-inline"><input type="checkbox"> Remember me</label>
+            <a href="#" class="pull-right">Forgot Password?</a>
+        </div>        -->
+    </form>
+    <p class="text-center"><a href="register.jsp">Create an Account</a></p>
+    </div>
         
         
     </body>
