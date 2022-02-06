@@ -97,8 +97,6 @@ span.psw {
         
         <%@include file="indexheader.jsp" %>
         
-        
-        
         <div class="login-form">
         <form action="LoginServlet" method="post">
         <h2 class="text-center">Log in</h2>       
