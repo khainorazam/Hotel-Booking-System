@@ -27,7 +27,8 @@ public class RatingServlet extends HttpServlet {
         
             HttpSession session = request.getSession();
             String email = (String) session.getAttribute("email");
-
+            
+            
             String rating = request.getParameter("rating");
             String review = request.getParameter("review");
 
