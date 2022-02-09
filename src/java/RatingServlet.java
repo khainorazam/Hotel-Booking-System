@@ -2,6 +2,9 @@
 import DAO.RatingDAO;
 import DAO.RatingDAOImpl;
 import Model.Rating;
+import DAO.BookingDAO;
+import DAO.BookingDAOImpl;
+import Model.Booking;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -28,6 +31,7 @@ public class RatingServlet extends HttpServlet {
             HttpSession session = request.getSession();
             String email = (String) session.getAttribute("email");
             String roomType = (String) session.getAttribute("roomType");
+            int bookingID = (Integer) session.getAttribute("bookingID");
             
             String rating = request.getParameter("rating");
             String review = request.getParameter("review");
@@ -37,6 +41,13 @@ public class RatingServlet extends HttpServlet {
             Rating i = new Rating(email,rating,review, roomType);
         
             dao.insert(i);
+            
+            BookingDAO upd = new BookingDAOImpl();
+            Booking b = new Booking();
+            b.setBookingID(bookingID);
+            b.setRate(1);
+        
+            upd.update(b);
 
             response.sendRedirect("home.jsp");
         

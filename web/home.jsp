@@ -15,7 +15,10 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <%String email=(String)session.getAttribute("email");%>
+        <%
+            String email=(String)session.getAttribute("email");
+            session.setAttribute("email", email);
+        %>
         
         <%@include file="header.jsp" %>
         
@@ -66,8 +69,6 @@
                                     <h5 class="card-title">RM <%=rs.getString("price")%></h5>
                                     <h5 class="card-title"><%=rs.getString("no_of_pax")%>pax</h5>
                                     
-                                    <input name="price" value="<%=rs.getString("price")%>" hidden>
-                                    <input name="quantity" value="<%=rs.getString("quantity")%>" hidden>
                                     <input name="roomType" value="<%=rs.getString("roomType")%>" hidden>
                                     <input name="email" value="<%=email%>" hidden>
                                     <input type="submit" value="Book" >
