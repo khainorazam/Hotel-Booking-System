@@ -4,12 +4,13 @@
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Connection"%>
+<%@page import="java.sql.PreparedStatement"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Home Page</title>
+        <title>Login Page</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -127,19 +128,6 @@
 
         <%@include file="indexheader.jsp" %>
 
-        <!-- Jumbotron -->
-        <div
-            class="bg-image p-5 text-center shadow-1-strong rounded mb-5 text-white"
-            style="background-image: url('https://mdbcdn.b-cdn.net/img/new/slides/003.webp');"
-            >
-            <h1 class="mb-3 h2">OWO Hotel </h1>
-
-            <p>
-                A luxurious hotel for couples, families and friends to escape from their busy life
-            </p>
-        </div>
-        <!-- Jumbotron -->
-
         <div class="container" style="margin-top:50px;">
 
             <div class="row">
@@ -156,39 +144,39 @@
                         Connection conn = DriverManager.getConnection(connectionUrl + database, userid, password);
 
                         //prepared statement
-                        String sqlselect = "select * from room";
+                        String type = request.getParameter("roomType");
+                        
+                        
+                        String sqlselect = "select * from rating where roomType=?";
                         PreparedStatement ps = conn.prepareStatement(sqlselect);
+                        ps.setString(1, type);
+                        
+//                        String sqlselect = "select * from rating";
+//                        PreparedStatement ps = conn.prepareStatement(sqlselect);
 
                         ResultSet rs = ps.executeQuery();
 
-                        while (rs.next()) {
+                        while (rs.next()) {       
+                    %>
+                    <div class="col-md-3">
+                        <div class="card-sl">
 
-                %>
-                <div class="col-md-3">
-                    <div class="card-sl">
-                        <div class="card-image">
-                            <img
-                                src="img/<%=rs.getString("picture")%>" />
+
+                            <!--<a class="card-action" href="#"><i class="fa fa-heart"></i></a>-->
+                            <div class="card-heading">
+                                
+                                <%=rs.getString("roomType")%>
+                            </div>
+                            <div class="card-text">
+                                Rating : <%=rs.getString("rating")%><br>
+                                Review : <%=rs.getString("review")%>
+                            </div>
+
+
                         </div>
-
-                        <!--<a class="card-action" href="#"><i class="fa fa-heart"></i></a>-->
-                        <div class="card-heading">
-                            <%=rs.getString("roomType")%>
-                        </div>
-                        <div class="card-text">
-                            RM <%=rs.getString("price")%><br>
-                            <%=rs.getString("no_of_pax")%> Person<br>
-                            <%=rs.getString("Description")%>
-                        </div>
-
-
-
-                        <a href="viewrating.jsp?roomType=<%= rs.getString("roomType")%>" class="card-button" > Details</a>
 
                     </div>
-
-                </div>
-
+                        
                 <%
                         }
                     } catch (Exception ex) {
@@ -196,12 +184,13 @@
                     }
                 %>  
             </div> 
+
         </div>
-    <footer>
+
+            <footer>
             <%@include file="footer.jsp" %>
-    </footer>    
+            </footer>
 
 
     </body>
-    
 </html>
