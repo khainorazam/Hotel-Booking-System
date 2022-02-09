@@ -2,13 +2,13 @@
     <head>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
         <script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
-        
+
         <style>
             @import url(https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
             @import url(http://fonts.googleapis.com/css?family=Calibri:400,300,700);
             body {
                 background-color: #D3D3D3;
-                
+
             }
 
             fieldset,
@@ -136,15 +136,21 @@
                 background-color: #D32F2F !important
             }   
         </style>
-        
+
     </head>
 
     <body>  
-        <%String email = (String) session.getAttribute("email");%>
+        <%
+            String email = (String) session.getAttribute("email");
+            int bookingID = Integer.parseInt(request.getParameter("bookingID"));
+
+            session.setAttribute("email", email);
+            session.setAttribute("bookingID", bookingID);
+        %>
         <%@include file="header.jsp" %>
         <form action="RatingServlet" method="get">  
 
-            
+
 
             <div class="container d-flex justify-content-center mt-100">
                 <div class="row">
@@ -153,41 +159,41 @@
                             <div class="card-body text-center"> <span class="myratings">4.5</span>
                                 <h4 class="mt-1">Rate us</h4>
                                 <fieldset class="rating"> <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title="Awesome - 5 stars"></label> <input type="radio" id="star4half" name="rating" value="4.5" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label> <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title="Pretty good - 4 stars"></label> <input type="radio" id="star3half" name="rating" value="3.5" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label> <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title="Meh - 3 stars"></label> <input type="radio" id="star2half" name="rating" value="2.5" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label> <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title="Kinda bad - 2 stars"></label> <input type="radio" id="star1half" name="rating" value="1.5" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label> <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title="Sucks big time - 1 star"></label> <input type="radio" id="starhalf" name="rating" value="0.5" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label> <input type="radio" class="reset-option" name="rating" value="reset" /> </fieldset>
-                            Review  
-                            <br>
-                            <textarea id="review" name="review" rows="4" cols="40"></textarea>
-                               <br><br> <input onclick="myFunction()" type="submit" value="Submit"/>
+                                Review  
+                                <br>
+                                <textarea id="review" name="review" rows="4" cols="40"></textarea>
+                                <br><br> <input onclick="myFunction()" type="submit" value="Submit"/>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
 
         </form>  
         <script type='text/javascript' src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-        
-        <script>
-                    $(document).ready(function () {
 
-                        $("input[type='radio']").click(function () {
-                            var sim = $("input[type='radio']:checked").val();
-                            //alert(sim);
-                            if (sim < 3) {
-                                $('.myratings').css('color', 'red');
-                                $('.myratings').text(sim);
-                            } else {
-                                $('.myratings').css('color', 'green');
-                                $('.myratings').text(sim);
-                            }
-                        });
-                    });
-            </script>
-            <script>
+        <script>
+                                    $(document).ready(function () {
+
+                                        $("input[type='radio']").click(function () {
+                                            var sim = $("input[type='radio']:checked").val();
+                                            //alert(sim);
+                                            if (sim < 3) {
+                                                $('.myratings').css('color', 'red');
+                                                $('.myratings').text(sim);
+                                            } else {
+                                                $('.myratings').css('color', 'green');
+                                                $('.myratings').text(sim);
+                                            }
+                                        });
+                                    });
+        </script>
+        <script>
             function myFunction() {
-              alert("Rating Successfull !");
+                alert("Rating Successfull !");
             }
-</script>
+        </script>
     </body>  
-    
+
 </html>  
