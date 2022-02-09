@@ -27,12 +27,11 @@ public class RatingServlet extends HttpServlet {
         
             HttpSession session = request.getSession();
             String email = (String) session.getAttribute("email");
-            
+            String roomType = (String) session.getAttribute("roomType");
             
             String rating = request.getParameter("rating");
             String review = request.getParameter("review");
-
-            String roomType = "single";
+ 
             
             RatingDAO dao = new RatingDAOImpl();
             Rating i = new Rating(email,rating,review, roomType);
