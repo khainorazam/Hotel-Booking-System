@@ -30,7 +30,8 @@ String driver= "com.mysql.jdbc.Driver";
   
 String q=request.getParameter("question");  
 String e=request.getParameter("email");
-
+//receive email from session
+//String email=session.getAttribute("email");
         
 Class.forName("com.mysql.jdbc.Driver");  
 Connection conn=DriverManager.getConnection( url, user, password);  

@@ -10,10 +10,20 @@ import java.io.Serializable;
 public class User implements Serializable {
     String name;
     String email;
+    String password;
+    String phone;
+    String level;
+    String address;
+    float ewallet_balance=0;
 
-    public User(String name, String email) {
+    public User(String email, String name, String password, String phone, String level, String address) {
         this.name = name;
         this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.level = level;
+        this.address = address;
+        
     }
 
     public String getName() {
@@ -31,5 +41,50 @@ public class User implements Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public float getEwallet_balance() {
+        return ewallet_balance;
+    }
+
+    public void setEwallet_balance(float ewallet_balance) {
+        this.ewallet_balance = ewallet_balance;
+    }
+    
+    
+
+    
+
     
 }
