@@ -14,6 +14,7 @@
         <title>Help Center (User)</title>
     </head>
     <body>
+        <%String email=(String)session.getAttribute("email");%>
         <%@include file="header.jsp" %>
         <div class="container">
         <h1>Help Center</h1>
@@ -41,7 +42,7 @@
                     String url= "jdbc:mysql://localhost:3306/owohotel";
                     String user= "root";
                     String password = "";
-                    
+                    session.setAttribute("email", email);
                     try {
         
         //1 import packages -->sql 
@@ -52,7 +53,7 @@
         Connection conn = DriverManager.getConnection(url, user, password);
         
         //step 4 : create an sql statement
-        String sqlselect = "select * from helpcenter where email = 'khainor@gmail.com'";
+        String sqlselect = "select * from helpcenter where email = '" + email + "'";
         //step 5 : execute the statement
 //        Statement stmt = conn.createStatement();
         PreparedStatement ps = conn.prepareStatement(sqlselect);
@@ -103,7 +104,8 @@
             
             </textarea>
             <br><br>
-            From (email):<input type="email" name="email"/><br/><br/>  
+
+            <input type="email" name="email" hidden value=<%=email%>    /><br/><br/>  
             <input type="submit" value="Submit">
         </form>
                 <br/>

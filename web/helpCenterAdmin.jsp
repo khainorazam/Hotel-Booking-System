@@ -14,7 +14,8 @@
         <title>Help Center (Admin)</title>
     </head>
     <body>
-        <%@include file="header.jsp" %>
+        <%String email=(String)session.getAttribute("email");%>
+        <%@include file="adminheader.jsp" %>
         <div class="container">
         <h1>Help Center (Admin)</h1>
         <!-- 1. Display all messages
@@ -98,15 +99,7 @@
         </table>
         
                 <form action="HelpAdminServlet" method="post">
-            <label for="reply">Reply:</label>
-            <br>
-            
-            <textarea id="question" name="reply" rows="4" cols="50" required>
-                      
-            
-            </textarea>
-            <br><br>
-            Reply to:
+                        Reply to:
             <select name="id">
             <option>Message ID</option>
             
@@ -143,6 +136,16 @@
             %>
             </select>
             <br/><br/>
+            
+            <label for="reply">Reply:</label>
+            <br>
+            
+            <textarea id="question" name="reply" rows="4" cols="50" required>
+                      
+            
+            </textarea>
+            <br><br>
+
             <input type="submit" value="Submit">
         </form>
                 <h3>Message Status: <%=request.getParameter("name")%></h3>
