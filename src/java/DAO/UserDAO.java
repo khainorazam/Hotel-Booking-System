@@ -13,7 +13,8 @@ import java.util.List;
  * @author End-User
  */
 public interface UserDAO {
-    public void insertUser(User u);
+    public void register(User u);
+    
 }
 
 

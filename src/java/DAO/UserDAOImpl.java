@@ -5,6 +5,11 @@
  */
 package DAO;
 import Model.User;
+import static java.lang.System.out;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 /**
  *
@@ -12,9 +17,36 @@ import Model.User;
  */
 public class UserDAOImpl implements UserDAO{
 
+    Connection conn;
+    PreparedStatement ps;
+    ResultSet rs;
+    
     @Override
-    public void insertUser(User u) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void register(User u) {
+        User su = u;
+        try{
+
+            String sqlinsert = "insert into user(email,name,password,phone,level,address,ewallet_balance)values('"
+                +su.getEmail()+"','"
+                +su.getName()+"','"
+                +su.getPassword()+"','"
+                +su.getPhone()+"','"
+                +su.getLevel()+"','"
+                +su.getAddress()+"','"
+                +su.getEwallet_balance()+"'"
+                +")"; 
+
+            conn = DBUtility.DBConnection.openConnection();
+//            conn = DBConnection.openConnection();
+            Statement stmt = conn.createStatement();
+            stmt.executeUpdate(sqlinsert);
+
+            
+        }
+  
+        catch (Exception ex){
+            ex.printStackTrace(out);
+        } 
     }
     
 }

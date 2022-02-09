@@ -8,12 +8,15 @@
     <div class="navbar-collapse collapse" id="collapseNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-item nav-link active" href="" ><div style='color:white'>Admin</div></a>
+                    <a class="nav-item nav-link active" href="homeadmin.jsp" ><div style='color:white'>Admin</div></a>
                 </li>
                
                 
             </ul>
             <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-item nav-link" href="helpCenterAdmin.jsp"><div style='color:lightblue; text-align:right; margin-right: 20px'>Help Center</div></a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-item nav-link" href="#"><div style='color:lightblue; text-align:right; margin-right: 20px'><% out.print(email);   %></div></a>
                 </li>
