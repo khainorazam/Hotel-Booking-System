@@ -24,14 +24,10 @@
             </ul>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-
-                    <a class="nav-item nav-link" href="Profile"><div style='color:lightblue; text-align:right; margin-right: 20px'><% out.print(email);   %></div></a>
-
                     <a class="nav-item nav-link" href="helpCenterUser.jsp"><div style='color:lightblue; text-align:right; margin-right: 20px'>Help Center</div></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-item nav-link" href="#"><div style='color:lightblue; text-align:right; margin-right: 20px'><% out.print(email);   %></div></a>
-
+                    <a class="nav-item nav-link" href="Profile"><div style='color:lightblue; text-align:right; margin-right: 20px'><% out.print(email);   %></div></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-item nav-link" href="logout.jsp"><div style='color:lightblue; text-align:right; margin-right: 20px'>Logout</div></a>
