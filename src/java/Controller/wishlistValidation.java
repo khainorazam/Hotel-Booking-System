@@ -1,3 +1,5 @@
+package Controller;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,12 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author User
- */
-@WebServlet(urlPatterns = {"/bookingValidation"})
-public class bookingValidation extends HttpServlet {
+@WebServlet(urlPatterns = {"/wishlistValidation"})
+public class wishlistValidation extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -36,46 +34,37 @@ public class bookingValidation extends HttpServlet {
         String user = "root";
         String password = "";
 
-        String startDate = request.getParameter("startDate");
-        int duration = Integer.parseInt(request.getParameter("duration"));
+        String email=request.getParameter("email");  
+        String roomType=request.getParameter("roomType");  
         HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("email");
-        String roomType = (String) session.getAttribute("roomType");
-        Double price = (Double) session.getAttribute("price");
-        int quantity = (Integer) session.getAttribute("quantity");
-        int i = 0;
+//        String email = (String) session.getAttribute("email");
+//        String roomType = (String) session.getAttribute("roomType");
+        
+
         try {
-            Class.forName(driver);
+            Class.forName("com.mysql.jdbc.Driver");
             Connection conn = DriverManager.getConnection(url + database, user, password);
 
             Statement stm = conn.createStatement();
-            String slt = ("select * from booking where startDate='" + startDate + "' and roomType='" + roomType + "'");
+            String slt = ("select * from wishlist where email='" + email + "' and roomType='" + roomType + "'");
             ResultSet rs = stm.executeQuery(slt);
 
-            while (rs.next()) {
-                i++;
+            session.setAttribute("email", email);
+            session.setAttribute("roomType", roomType);
+
+            if (rs.next()) {
+
+                session.setAttribute("valid", "true");
+                response.sendRedirect("booking.jsp");
+            } else {
+                session.setAttribute("valid", "false");
+                response.sendRedirect("booking.jsp");
             }
             conn.close();
 
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
         }
-        try {
-            if (i < quantity) {
-                session.setAttribute("email", email);
-                session.setAttribute("roomType", roomType);
-                price = price * duration;
-                session.setAttribute("price", price);
-                session.setAttribute("startDate", startDate);
-                session.setAttribute("duration", duration);
-                response.sendRedirect("addBooking");
-            } else {
-                out.println("<html><head></head><body><form action=\"home.jsp\">This room already full on this date.Cannot perform booking<br><input type=\"submit\" value=\"OK\"></form></body></html>"); 
-            }
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
 
     }
-
 }
