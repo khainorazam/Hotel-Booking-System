@@ -242,39 +242,8 @@
                         <div class="button"><input type="submit" value="Book" ></div>
                     </form>
                 </div>
+                        </div>
 
-	<div>
-            <h2><strong>Hotel</strong></h2><br>
-            <div class="row">
-                <img src="https://th.bing.com/th/id/OIP.2yafwQfSIm9scaOmB6VscgHaFj?pid=ImgDet&rs=1" alt="Snow" style="width:40%" class="dp">
-                <%if(valid.equals("true")){%>
-               <img src="https://www.nicepng.com/png/detail/172-1723156_heart-love-red-element-wedding-icon-love-heart.png" style="width:2%" class="wishlist">
-               <%} else{%>
-               <form action="InsertWishlist" method="post"> <!--Add to Wishlist -->
-                   <input name="email" value="<%=email%>" hidden>
-                   <input name="roomType" value="<%=roomType%>" hidden>
-                   <input type="image" src="https://www.clipartmax.com/png/full/78-788944_wish-list-best-wish-christmas-icon-wish-list.png" alt="Submit" class="wishlist" width=2%>
-               </form> 
-               <%}%>
-                <br>
-                <div>Name:  </div><br>
-                <div>Location: </div><br>
-                <div>Email: </div><br>
-                <div>Phone no.: </div><br>
-                <div>Room Type: </div><br>
-                <div>Price per Night: </div>
-            <form action="addBooking.java" method="get">
-                Check-in Date: <br>
-                <input  name="startDate" type="date"><br><br>
-                Day: <br>
-                <div class="value-button" id="decrease" onclick="decreaseValue()">-</div>
-                <input name="duration" type="number" id="number" value="1" />
-                <div class="value-button" id="increase" onclick="increaseValue()">+</div>
-                <div class="button"><button type="button" >Book</button></div>
-            </form>
-
-            </div>
-        </div>
 
         <script>
             function increaseValue() {
@@ -293,6 +262,7 @@
             }
 
         </script>
+        </div>
         <%
                 }
 
@@ -300,5 +270,6 @@
                 ex.printStackTrace();
             }
         %>
+        
     </body>
 </html>
