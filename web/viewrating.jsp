@@ -187,7 +187,7 @@
 
         </div>
 
-            <footer>
+            <footer class="page-footer font-small purple pt-4 fixed-bottom">
             <%@include file="footer.jsp" %>
             </footer>
 
