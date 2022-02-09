@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 
+import DAO.WishlistDAO;
+import DAO.WishlistDAOImpl;
+import Model.Wishlist;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -25,40 +28,44 @@ public class InsertWishlist extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String driver= "com.mysql.jdbc.Driver";
-        String database= "owohotel";
-        String url= "jdbc:mysql://localhost:3306/";
-        String user= "root";
-        String password = "";
+//        String driver= "com.mysql.jdbc.Driver";
+//        String database= "owohotel";
+//        String url= "jdbc:mysql://localhost:3306/";
+//        String user= "root";
+//        String password = "";
         
         
         String email=request.getParameter("email");  
         String roomType=request.getParameter("roomType"); 
         
-        try{
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection(url+database, user, password);
+        Wishlist w = new Wishlist(email,roomType);
+        WishlistDAO dao = new WishlistDAOImpl();
+        dao.insertWishlist(w);
         
-        
-       String sqlinsert = "insert into wishlist (email, roomType)values"
-        + "('"   + email  + "','" + roomType + "')";
-        
-        log(sqlinsert);
-        Statement stmt = conn.createStatement();
-        stmt.executeUpdate(sqlinsert);
+//        try{
+//        Class.forName("com.mysql.jdbc.Driver");
+//        Connection conn = DriverManager.getConnection(url+database, user, password);
+//        
+//        
+//       String sqlinsert = "insert into wishlist (email, roomType)values"
+//        + "('"   + email  + "','" + roomType + "')";
+//        
+//        log(sqlinsert);
+//        Statement stmt = conn.createStatement();
+//        stmt.executeUpdate(sqlinsert);
 
         HttpSession session=request.getSession(); 
 
         session.setAttribute("email", email);
         session.setAttribute("roomType", roomType);
         
-        conn.close();
+//        conn.close();
         
         response.sendRedirect("wishlist.jsp");
         
-        }catch(ClassNotFoundException | SQLException e){
-            System.out.println(e.getMessage());
-        }
+//        }catch(ClassNotFoundException | SQLException e){
+//            System.out.println(e.getMessage());
+//        }
         
     }
 }

@@ -213,7 +213,7 @@
                     <%if (valid.equals("true")) {%>
                     <img src="https://www.nicepng.com/png/detail/172-1723156_heart-love-red-element-wedding-icon-love-heart.png" style="width:2%" class="wishlist">
                     <%} else {%>
-                    <form action="home.jsp" method="get"> 
+                    <form action="InsertWishlist" method="post"> 
                         <input name="email" value="<%=email%>" hidden>
                         <input name="roomType" value="<%=roomType%>" hidden>
                         <input type="image" src="https://www.clipartmax.com/png/full/78-788944_wish-list-best-wish-christmas-icon-wish-list.png" alt="Submit" class="wishlist" width=2%>
