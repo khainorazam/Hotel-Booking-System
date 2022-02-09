@@ -71,17 +71,16 @@
                                     <h4 class="card-title"><%=rs2.getString("roomType")%></h4>
                                     <h5 class="card-title">Booked date: <%=rs.getString("startDate")%></h5>
                                     <h5 class="card-title">Day/Night: <%=rs.getString("duration")%></h5>
-                                    <h5 class="card-title">Total:RM <%=rs.getString("payment")%></h5>
                                     <input name="bookingID" value="<%=rs.getInt("bookingID")%>" hidden>
                                     <%
                                     if(rs.getBoolean("rate")){
                                     %>
-                                    <input type="submit" value="Rate" disabled="">
+                                    <input type="submit" value="Rate" disabled="" >
                                     <%
                                     }else{
                                     %>
                                     
-                                    <input type="submit" value="Rate">
+                                    <input type="submit" value="Rate" style="background-color: #999900; color: white; ">
                                     <%
                                     }
                                     %>

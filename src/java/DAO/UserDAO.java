@@ -8,13 +8,9 @@ package DAO;
 import Model.User;
 import java.util.List;
 
-/**
- *
- * @author End-User
- */
 public interface UserDAO {
     public void register(User u);
-    
+    public void update(User u);
 }
 
 

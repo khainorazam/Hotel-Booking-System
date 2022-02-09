@@ -15,103 +15,23 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Booking</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" crossorigin="anonymous">
         <style>
 
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            h6,
-            div,
-            input,
-            p,
-            a {
-                font-family: "Open Sans";
-                margin: 0px;
-            }
-
-            body {
-                margin: 10px auto;
-                padding: 1em 1em;
-                background-color: #D3D3D3;
-            }
-
-            h2{
+            .card {
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+                max-width: 70%;
+                margin: auto;
                 text-align: center;
-                box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-                background-color: #3500A6;
-                position: relative;
-                border-radius: 10px;
-                padding: 1em 1em;
-                color: white;
+                font-family: arial;
             }
 
-            .container-fluid,
-            .container {
-                max-width: 100%;
+            .title {
+                color: grey;
+                font-size: 18px;
             }
-
-            .card-container {
-                padding: 100px 0px;
-                -webkit-perspective: 1000;
-                perspective: 1000;
-            }
-
-            .row{
-                max-width: 80%;
-                text-align: left;
-                background-color: #3500A6;
-                box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-                padding: 1em 1em;
-                padding-top: 2em;
-                overflow: hidden;
-                position: relative;
-                margin: 10px auto;
-                color: white;
-                border-radius: 10px;
-                font-size: 20px;
-            }
-
-            .dp{
-                background-color: #ffffff;
-                box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-                padding: 0.5em 0.5em;
-                overflow: hidden;
-                margin: 10px auto 20px;
-                display: block;
-                border-radius: 0.5px;
-                border-color: white;
-                text-align: center;
-            }
-
-            .wishlist{
-                margin: 10px auto 20px;
-                display: block;
-            }
-
-            button {
-                display: inline-block;
-                background-color: black;
-                border-radius: 20px;
-                border: 4px double #cccccc;
-                color: #eeeeee;
-                text-align: center;
-                font-size: 16px;
-                padding: 10px;
-                width: 150px;
-                transition: all 0.5s;
-                cursor: pointer;
-                margin: 5px;
-                float: right;
-            }
-
-            button:hover {
-                background-color: #808080;
-                color: black;
-            }
-
-            form {
+            #form-custom {
+                width: 300px;
                 margin: 0 auto;
                 text-align: center;
                 padding-top: 50px;
@@ -122,7 +42,7 @@
                 border: 1px solid #ddd;
                 margin: 0px;
                 width: 40px;
-                height: 20px;
+                height: 40px;
                 text-align: center;
                 vertical-align: middle;
                 padding: 11px 0;
@@ -169,6 +89,7 @@
                 -webkit-appearance: none;
                 margin: 0;
             }
+
         </style>
 
     </head>
@@ -195,7 +116,7 @@
                 Connection conn = DriverManager.getConnection(connectionUrl + database, userid, password);
 
                 //prepared statement
-                String sqlselect = ("select * from room where roomType='"+roomType+"'");
+                String sqlselect = ("select * from room where roomType='" + roomType + "'");
                 PreparedStatement ps = conn.prepareStatement(sqlselect);
 
                 ResultSet rs = ps.executeQuery();
@@ -203,30 +124,31 @@
                 while (rs.next()) {
         %> 
 
-
-        <div class="container">
-
-            <div>
-                <h2><strong>Hotel</strong></h2><br>
-                <div class="row">
-                    <img src="img/<%=rs.getString("picture")%>" alt="hotel image" style="width:40%" class="dp">
-                    <%if (valid.equals("true")) {%>
-                    <img src="https://www.nicepng.com/png/detail/172-1723156_heart-love-red-element-wedding-icon-love-heart.png" style="width:2%" class="wishlist">
-                    <%} else {%>
-                    <form action="home.jsp" method="get"> 
-                        <input name="email" value="<%=email%>" hidden>
-                        <input name="roomType" value="<%=roomType%>" hidden>
-                        <input type="image" src="https://www.clipartmax.com/png/full/78-788944_wish-list-best-wish-christmas-icon-wish-list.png" alt="Submit" class="wishlist" width=2%>
-                    </form> 
-                    <%}%>
-                    <br>
-                    <div>Room Type:  <%=rs.getString("roomType")%>  </div><br>
-                    <div>Number of Pack: <%=rs.getString("no_of_pax")%></div><br>
-                    <div>Price per Night: RM <%=rs.getString("price")%></div><br>
-                    <div>Email: </div><br>
-                    <div>Phone no.: </div>
-                    
-                    <form action="bookingValidation" method="get">
+        <%@include file="header.jsp" %>
+        <div class="container-fluid" >
+            <br>
+            <div class="card" style="background-color: #E6E6FA; "><br>
+                <div class="text-center">
+                    <img src="img/<%=rs.getString("picture")%>" alt="hotel image" style="width:40%" class="rounded-circle">
+                </div>
+                <br>
+                <%if (valid.equals("true")) {%>
+                
+                <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" style="display: block; margin-left: auto; margin-right: auto; width:2%;">
+                <%} else {%>
+                <form action="InsertWishlist" method="post"> 
+                    <input name="email" value="<%=email%>" hidden>
+                    <input name="roomType" value="<%=roomType%>" hidden>
+                    <input type="image" src="https://cdn-icons-png.flaticon.com/512/833/833300.png" alt="Submit" width=2%>
+                </form> 
+                <%}%>
+                <br>
+                <h5>Room Type:</h5>
+                <h1><%=rs.getString("roomType")%></h1><br>
+                <h5>Number of Pack: <%=rs.getString("no_of_pax")%> person per room</h5>
+                <h5>Price per Night: RM <%=rs.getString("price")%></h5>
+                
+                <form action="bookingValidation" method="get" id="form-custom">
                         Check-in Date: <br>
                         <input  name="startDate" type="date" min = '<%= formattedDate%>'><br><br>
                         Day: <br>
@@ -239,29 +161,28 @@
                             session.setAttribute("price", rs.getDouble("price"));
                             session.setAttribute("quantity", rs.getInt("quantity"));
                         %>
-                        <div class="button"><input type="submit" value="Book" ></div>
-                    </form>
-                </div>
-                        </div>
+                        <div class="button"><input type="submit" value="Book" style="background-color: #3500A6; color: white; "></div>
+                </form><br>
 
+            </div>
 
-        <script>
-            function increaseValue() {
-                var value = parseInt(document.getElementById('number').value, 7);
-                value = isNaN(value) ? 1 : value;
-                value++;
-                document.getElementById('number').value = value;
-            }
+            <script>
+                function increaseValue() {
+                    var value = parseInt(document.getElementById('number').value, 7);
+                    value = isNaN(value) ? 1 : value;
+                    value++;
+                    document.getElementById('number').value = value;
+                }
 
-            function decreaseValue() {
-                var value = parseInt(document.getElementById('number').value, 7);
-                value = isNaN(value) ? 1 : value;
-                value < 2 ? value = 2 : '';
-                value--;
-                document.getElementById('number').value = value;
-            }
+                function decreaseValue() {
+                    var value = parseInt(document.getElementById('number').value, 7);
+                    value = isNaN(value) ? 1 : value;
+                    value < 2 ? value = 2 : '';
+                    value--;
+                    document.getElementById('number').value = value;
+                }
 
-        </script>
+            </script>
         </div>
         <%
                 }
@@ -270,6 +191,6 @@
                 ex.printStackTrace();
             }
         %>
-        
+
     </body>
 </html>
