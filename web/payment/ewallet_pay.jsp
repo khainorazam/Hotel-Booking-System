@@ -28,13 +28,14 @@
             }
             .method-box{
                 display: flex;
-                background-color: purple;
+                background-color: #3500A6;
                 min-width: 500px;
                 justify-content: space-around;
                 flex-direction: column;
                 align-items: center;
                 padding: 50px;
                 color: white;
+                border-radius: 20px;
             }
             .btn{
                 padding-top: 40px;
@@ -65,9 +66,10 @@
                     <form action="UserController">
                         <input  type="hidden" name="function" value="EwalletHome">
                         <input  type="hidden" name="email" value="${param.email}">
-                        <input class="button-1" type="submit" value="Top-Up" onclick="">
+                        <input class="button-1" type="submit" value="Top-Up">
                     </form>
                     <form id="pay" action="UserController">
+                        <input type="hidden" name="bookingID" value="${param.bookingID}">
                         <input type="hidden" name="function" value="Pay by ewallet">
                         <input  type="hidden" name="paymentType" value="E-Wallet">
                         <input  type="hidden" name="roomType" value="<%=p.getRoomType()%>">

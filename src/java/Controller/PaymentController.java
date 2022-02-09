@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Booking;
 import Model.Payment;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -19,42 +20,40 @@ public class PaymentController extends HttpServlet {
 
         String function = request.getParameter("function");
         String email = request.getParameter("email");
-        
 
-            if(function.equals("Create Payment"))
-            {
+        if (function.equals("Create Payment")) {
+            int bookingID = Integer.parseInt(request.getParameter("bookingID"));
             String paymentType = request.getParameter("paymentType");
             String roomType = request.getParameter("roomType");
             float amount = Float.parseFloat(request.getParameter("amount"));
-            
+
             Payment p = new Payment();
+            Booking b = new Booking();
 
-                p.setPaymentType(paymentType);
-                p.setRoomType(roomType);
-                p.setAmount(amount);
-                p.setEmail(email);
+            p.setPaymentType(paymentType);
+            p.setRoomType(roomType);
+            p.setAmount(amount);
+            p.setEmail(email);
 
-                p.createPayment(paymentType,roomType,amount,email);    
-                request.getRequestDispatcher("payment/thanks.jsp").forward(request,response);
-            }
-            
-            else if(function.equals("Delete"))
-            {
-                int id = Integer.parseInt(request.getParameter("paymentID"));
+            p.createPayment(paymentType, roomType, amount, email);
+            b.updatePaid(bookingID);
+            b.updateRate(bookingID);
+            request.getRequestDispatcher("payment/thanks.jsp").forward(request, response);
+        } else if (function.equals("Delete")) {
+            int id = Integer.parseInt(request.getParameter("paymentID"));
 
-                Payment pr = new Payment();
+            Payment pr = new Payment();
 
-                pr.deletePayment(id);
-           
-            }    
-            
-                
-                Payment cs = new Payment();
+            pr.deletePayment(id);
 
-                List<Payment> ls = cs.getAllPayment();
+        }
 
-                request.setAttribute("ls",ls);
-                request.getRequestDispatcher("payment/payment_list.jsp").forward(request,response);           
+        Payment cs = new Payment();
+
+        List<Payment> ls = cs.getAllPayment();
+
+        request.setAttribute("ls", ls);
+        request.getRequestDispatcher("payment/payment_list.jsp").forward(request, response);
 
     }
 }

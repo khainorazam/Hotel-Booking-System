@@ -1,5 +1,6 @@
 package Controller;
 
+import Model.Booking;
 import Model.User;
 import Model.Payment;
 import java.io.IOException;
@@ -20,8 +21,10 @@ public class UserController extends HttpServlet {
 
         String function = request.getParameter("function");
         String email = request.getParameter("email");
+        
 
         if (function.equals("Pay by ewallet")) {
+            int bookingID = Integer.parseInt(request.getParameter("bookingID"));
             String paymentType = request.getParameter("paymentType");
             String roomType = request.getParameter("roomType");
             float amount = Float.parseFloat(request.getParameter("amount"));
@@ -29,6 +32,7 @@ public class UserController extends HttpServlet {
 
             User q = new User();
             Payment p = new Payment();
+            Booking b = new Booking();
 
             p.setPaymentType(paymentType);
             p.setRoomType(roomType);
@@ -36,7 +40,8 @@ public class UserController extends HttpServlet {
             p.setEmail(email);
 
             p.createPayment(paymentType, roomType, amount, email);
-
+            b.updatePaid(bookingID);
+            b.updateRate(bookingID);
             q.updateEbalance(email, ebalance);
 
             request.getRequestDispatcher("payment/thanks.jsp").forward(request, response);

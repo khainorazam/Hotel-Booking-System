@@ -5,6 +5,11 @@
  */
 package Model;
 
+import DBUtility.DBConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
 /**
  *
  * @author User
@@ -17,6 +22,11 @@ public class Booking {
     String startDate;
     Double payment;
     int rate;
+    int isPaid;
+    
+    Connection conn;
+    PreparedStatement ps;
+    ResultSet rs;
     
     public Booking() {
     }
@@ -53,6 +63,10 @@ public class Booking {
         this.payment = payment;
     }
 
+    public void setIsPaid(int isPaid) {
+        this.isPaid = isPaid;
+    }
+
     public void setRate(int rate) {
         this.rate = rate;
     }
@@ -81,8 +95,68 @@ public class Booking {
         return payment;
     }
 
+    public int getIsPaid() {
+        return isPaid;
+    }
+
     public int isRate() {
         return rate;
+    }
+    
+    public Booking getBooking(int id) {
+
+        Booking p = new Booking();
+        
+        try {
+            String SQL = "SELECT * FROM BOOKING WHERE bookingID=?";
+            conn = DBConnection.openConnection();
+            ps = conn.prepareStatement(SQL);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                p.setBookingID(rs.getInt("bookingID"));
+                p.setEmail(rs.getString("email"));
+                p.setRoomType(rs.getString("roomType"));
+                p.setDuration(rs.getInt("duration"));
+                p.setStartDate(rs.getString("startDate"));
+                p.setPayment(rs.getDouble("payment"));
+ 
+            }
+
+        } catch (Exception e) {
+        }
+        return p;
+    }
+    
+    public void updatePaid(int id) {
+
+        try {
+            String sqlupdate = "UPDATE BOOKING SET isPaid =1 WHERE bookingID =?";
+            conn = DBConnection.openConnection();
+            ps = conn.prepareStatement(sqlupdate);
+
+            ps.setInt(1, id);
+
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+        }
+    }
+    
+    public void updateRate(int id) {
+
+        try {
+            String sqlupdate = "UPDATE BOOKING SET rate=0 WHERE bookingID =?";
+            conn = DBConnection.openConnection();
+            ps = conn.prepareStatement(sqlupdate);
+
+            ps.setInt(1, id);
+
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+        }
     }
     
     
