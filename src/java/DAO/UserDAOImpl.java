@@ -7,6 +7,7 @@ package DAO;
 import Model.User;
 import static java.lang.System.out;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -47,6 +48,29 @@ public class UserDAOImpl implements UserDAO{
         catch (Exception ex){
             ex.printStackTrace(out);
         } 
+    }
+    
+    @Override
+    public void update(User u) {
+
+        try {
+            
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/owohotel", "root", "");
+
+            String update = "UPDATE user SET name = ?, phone = ?, address = ? WHERE email = '"+u.getEmail()+"'";
+            PreparedStatement ps = conn.prepareStatement(update);
+            
+            ps.setString(1, u.getName());
+            ps.setString(2, u.getPhone());
+            ps.setString(3, u.getAddress());
+            ps.executeUpdate();
+            
+            conn.close();
+        } 
+        catch (Exception ex) {
+             ex.printStackTrace();
+        }
     }
     
 }
