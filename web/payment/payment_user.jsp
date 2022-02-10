@@ -27,12 +27,13 @@
             }
             .method-box{
                 display: flex;
-                background-color: purple;
+                background-color: #3500A6;
                 min-width: 500px;
                 justify-content: space-around;
                 flex-direction: column;
                 align-items: center;
                 padding-bottom: 50px;
+                border-radius: 10px;
             }
             .flex-item2{
                 width: 100px;
@@ -63,21 +64,29 @@
 
 
                 <form action="BookingController" method="get">
+                    <input type="hidden" name="bookingID" value="${param.bookingID}">
+                    <input type="hidden" name="pic" value="${param.pic}">
                     <input type="hidden" name="email" value="${param.email}">
                     <input type="hidden" name="function" value="payment_ewallet">
                     <input class="button-1" type="submit" value="E-Wallet">
                 </form>
                 <form action="BookingController" method="get">
+                    <input type="hidden" name="bookingID" value="${param.bookingID}">
+                    <input type="hidden" name="pic" value="${param.pic}">
                     <input type="hidden" name="email" value="${param.email}">
                     <input type="hidden" name="function" value="payment_credit">
                     <input class="button-1" type="submit" value="Credit Card">
                 </form>
                 <form action="BookingController" method="get">
+                    <input type="hidden" name="bookingID" value="${param.bookingID}">
+                    <input type="hidden" name="pic" value="${param.pic}">
                     <input type="hidden" name="email" value="${param.email}">
                     <input type="hidden" name="function" value="payment_cash">
                     <input class="button-1" type="submit" value="Cash">
                 </form>
                 <form action="BookingController" method="get">
+                    <input type="hidden" name="bookingID" value="${param.bookingID}">
+                    <input type="hidden" name="pic" value="${param.pic}">
                     <input type="hidden" name="email" value="${param.email}">
                     <input type="hidden" name="function" value="payment_transfer">
                     <input class="button-1" type="submit" value="Online Transfer">

@@ -89,6 +89,8 @@
                                         <option value="20">RM 20</option>
                                         <option value="50">RM 50</option>
                                         <option value="100">RM 100</option>
+                                        <option value="200">RM 200</option>
+                                        <option value="300">RM 300</option>
                                     </select><br><br>
                                     <label for="bank">Choose a bank</label><br>
                                     <select name="paymentDesc" id="bank">

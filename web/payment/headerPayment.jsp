@@ -9,29 +9,31 @@
 <html>
     <head>
         <link rel="stylesheet" href="payment.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <%
             Booking p = new Booking();
             p = (Booking) request.getAttribute("booking");
         %>
+        
 
-        <div class="header-container">
+        <div class="header-container" style="background-color: #3500A6;">
 
-            <div class="header" >
+            <div class="header" style="color: white">
                 Payment</div>
         </div>
         <div class='middle'>
 
             <div class='flex-item img'>
-                <img src="img/<%=p.getRoomType()%>.jpg" alt="cat" border="0">
+                <img src="img/${param.pic}" alt="cat" border="0">
             </div>
             <div class="flex-item details">
-                <h2>Booking Details</h2>
-                <p>Room Type: <%=p.getRoomType()%></p>
-                <p>Duration of Stay: <%=p.getDuration()%> days</p>
-                <h2>Customer Details</h2>
-                <p><%=p.getEmail()%></p>
+                <h2 style="font-size:26px">Booking Details</h2>
+                <p style="font-size:22px">Room Type: <%=p.getRoomType()%></p>
+                <p style="font-size:22px">Duration of Stay: <%=p.getDuration()%> days</p>
+                <h2 style="font-size:26px">Customer Details</h2>
+                <p style="font-size:22px"><%=p.getEmail()%></p>
                 
             </div>
             <div class="flex-item total">
