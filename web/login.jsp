@@ -6,7 +6,12 @@
         <title>Login Page</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"  crossorigin="anonymous">
         <style>
-body {font-family: Arial, Helvetica, sans-serif;}
+body {
+                font-family: Varela Round;
+                background: #f1f1f1;
+
+            }
+            
 form {border: 3px solid #f1f1f1;}
 
 input[type=text], input[type=password] {
