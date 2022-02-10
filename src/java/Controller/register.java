@@ -25,14 +25,6 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
 response.setContentType("text/html;charset=UTF-8");  
 PrintWriter out = response.getWriter();  
           
-//try{  
-//    
-//String driver= "com.mysql.jdbc.Driver";
-//        String database= "owohotel";
-//        String url= "jdbc:mysql://localhost:3306/owohotel";
-//        String user= "root";
-//        String password = "";
-        
   
 String p=request.getParameter("password");  
 String n=request.getParameter("name");  
@@ -48,25 +40,7 @@ double ewallet= 0.00;
 
         response.sendRedirect("login.jsp");
         
-//Class.forName("com.mysql.jdbc.Driver");  
-//Connection conn=DriverManager.getConnection( url, user, password);  
-//
-//String sqlinsert = "insert into user (password,name,email,phone,level,address,ewallet_balance)values"
-//        + "('"   + p + "','"  + n + "','" + e + "','" + pn + "','"    + l + "','"   + add  + "','" + ewallet + "')";
-//  
-//log(sqlinsert);
-//          
-//Statement stmt = conn.createStatement();
-//stmt.executeUpdate(sqlinsert);
-//
-//conn.close();
-//response.sendRedirect("login.jsp");
-//      
-//          
-//}
-//        catch (Exception ex){
-//            ex.printStackTrace(out);
-//        }   
+ 
     }
 
          

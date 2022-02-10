@@ -136,7 +136,7 @@
                 
                 <img src="https://cdn-icons-png.flaticon.com/512/833/833472.png" style="display: block; margin-left: auto; margin-right: auto; width:2%;">
                 <%} else {%>
-                <form action="InsertWishlist" method="post"> 
+                <form onclick="myFunction()" action="InsertWishlist" method="post"> 
                     <input name="email" value="<%=email%>" hidden>
                     <input name="roomType" value="<%=roomType%>" hidden>
                     <input type="image" src="https://cdn-icons-png.flaticon.com/512/833/833300.png" alt="Submit" width=2%>
@@ -192,5 +192,10 @@
             }
         %>
 
+         <script>
+            function myFunction() {
+                alert("Room added to wishlist!");
+            }
+        </script>
     </body>
 </html>

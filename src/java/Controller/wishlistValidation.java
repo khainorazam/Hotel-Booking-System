@@ -37,8 +37,7 @@ public class wishlistValidation extends HttpServlet {
         String email=request.getParameter("email");  
         String roomType=request.getParameter("roomType");  
         HttpSession session = request.getSession();
-//        String email = (String) session.getAttribute("email");
-//        String roomType = (String) session.getAttribute("roomType");
+
         
 
         try {

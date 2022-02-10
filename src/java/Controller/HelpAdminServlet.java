@@ -24,34 +24,10 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
   
 response.setContentType("text/html;charset=UTF-8");  
 PrintWriter out = response.getWriter();  
-          
-//try{  
-    
-//String driver= "com.mysql.jdbc.Driver";
-//        String database= "owohotel";
-//        String url= "jdbc:mysql://localhost:3306/owohotel";
-//        String user= "root";
-//        String password = "";
-//        
+              
   
 String r=request.getParameter("reply");  
 int hcid=Integer.parseInt(request.getParameter("id"));
-
-        
-//Class.forName("com.mysql.jdbc.Driver");  
-//Connection conn=DriverManager.getConnection( url, user, password);  
-//
-//
-//String sqlupdate = "update helpcenter set reply = ? where hcID = ?";
-//PreparedStatement ps = conn.prepareStatement(sqlupdate);
-//        ps.setString(1, r);
-//        ps.setInt(2, hcid);
-//        ps.executeUpdate();
-//        
-//        log(sqlupdate);  
-//
-//          
-//conn.close();
 
     HelpCenter reply = new HelpCenter(hcid,r);
     HelpCenterDAO dao = new HelpCenterDAOImpl();
@@ -59,12 +35,8 @@ int hcid=Integer.parseInt(request.getParameter("id"));
     
     
 response.sendRedirect("helpCenterAdmin.jsp?name=Sent!");
-      
           
 }
-//        catch (Exception ex){
-//            ex.printStackTrace(out);
-//        }   
     }
 
          

@@ -1,3 +1,5 @@
+package Controller;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -27,14 +29,8 @@ public class InsertWishlist extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-//        String driver= "com.mysql.jdbc.Driver";
-//        String database= "owohotel";
-//        String url= "jdbc:mysql://localhost:3306/";
-//        String user= "root";
-//        String password = "";
-        
-        
+       
+          
         String email=request.getParameter("email");  
         String roomType=request.getParameter("roomType"); 
         
@@ -42,30 +38,14 @@ public class InsertWishlist extends HttpServlet {
         WishlistDAO dao = new WishlistDAOImpl();
         dao.insertWishlist(w);
         
-//        try{
-//        Class.forName("com.mysql.jdbc.Driver");
-//        Connection conn = DriverManager.getConnection(url+database, user, password);
-//        
-//        
-//       String sqlinsert = "insert into wishlist (email, roomType)values"
-//        + "('"   + email  + "','" + roomType + "')";
-//        
-//        log(sqlinsert);
-//        Statement stmt = conn.createStatement();
-//        stmt.executeUpdate(sqlinsert);
 
         HttpSession session=request.getSession(); 
 
         session.setAttribute("email", email);
         session.setAttribute("roomType", roomType);
-        
-//        conn.close();
-        
+   
         response.sendRedirect("wishlist.jsp");
         
-//        }catch(ClassNotFoundException | SQLException e){
-//            System.out.println(e.getMessage());
-//        }
         
     }
 }

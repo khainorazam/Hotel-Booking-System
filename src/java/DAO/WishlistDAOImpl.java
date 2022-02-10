@@ -45,7 +45,22 @@ public class WishlistDAOImpl implements WishlistDAO {
     }
     
     public void removeWishlist(Wishlist w){
+        Wishlist rw = w;
         
+        try {
+            String sqldelete = "DELETE FROM wishlist "
+                    + "WHERE roomType = ? AND email = ?";
+            conn = DBUtility.DBConnection.openConnection();
+            ps = conn.prepareStatement(sqldelete);
+
+            ps.setString(1, rw.getRoomType());
+            ps.setString(2, rw.getEmail());
+            ps.executeUpdate();
+        } 
+        catch (Exception ex) {
+        ex.printStackTrace(out);
+        }
     }
-    
 }
+    
+

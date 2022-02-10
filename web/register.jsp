@@ -23,21 +23,21 @@
         <br/>
 <form action="register" method="get">  
   
-Name : <input type="text" name="name"/><br/><br/> 
-Email : <input type="email" name="email"/><br/><br/>  
-Password : <input type="password" name="password"/><br/><br/> 
+Name : <input type="text" name="name" required/><br/><br/> 
+Email : <input type="email" name="email" required/><br/><br/>  
+Password : <input type="password" name="password" required/><br/><br/> 
 
 
-Phone No : <input type="text" name="phoneno"/><br/><br/> 
+Phone No : <input type="text" name="phoneno" required/><br/><br/> 
 
 <p>Register as :</p>
-<input type="radio" id="level2" name="level" value="2">
+<input type="radio" id="level2" name="level" value="2" required>
 <label for="level2"> Customer</label>
-<input type="radio" id="level1" name="level" value="1">
+<input type="radio" id="level1" name="level" value="1" required>
 <label for="level1"> Admin</label><br><br>
 
 Address :  
-<select name="address" id="address">  
+<select name="address" id="address" required>  
       <option value="Johor">Johor</option>
       <option value="Kedah">Kedah</option>
       <option value="Kelantan">Kelantan</option>
@@ -62,12 +62,16 @@ Address :
   
   
 <br/><br/>  
-<input type="submit" value="Register"/>  
+<input onsubmit="myFunction()" type="submit" value="Register"/>  
   
     </div>
 
 </form>  
-    
+        <script>
+            function myFunction() {
+                alert("Register Successful!");
+            }
+        </script>
 
 </body>  
 </html>  
