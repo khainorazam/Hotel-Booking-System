@@ -21,7 +21,7 @@
         <h1>Register</h1>
         <h4>Register an account today!</h4>
         <br/>
-<form action="register" method="get">  
+<form onsubmit="myFunction()" action="register" method="get">  
   
 Name : <input type="text" name="name" required/><br/><br/> 
 Email : <input type="email" name="email" required/><br/><br/>  
@@ -62,7 +62,7 @@ Address :
   
   
 <br/><br/>  
-<input onsubmit="myFunction()" type="submit" value="Register"/>  
+<input type="submit" value="Register"/>  
   
     </div>
 
