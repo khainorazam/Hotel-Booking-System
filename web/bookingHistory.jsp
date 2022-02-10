@@ -13,6 +13,13 @@
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" crossorigin="anonymous">
         <link rel="stylesheet" href="style.css">
+        <style>
+            input{
+                width: 70px;
+                border-radius: 5px;
+                margin:  2px;
+            }
+        </style>
     </head>
     <body>
         <%String email = (String) session.getAttribute("email");%>
@@ -57,41 +64,64 @@
 
         %>    
 
-        <form action="rating.jsp" method="get"> 
 
-            <div class="container-fluid " >
-                <div class="row justify-content-center" >
-                    <div class="col-5 mt-3">
-                        <div class="card">
-                            <div class="card-horizontal">
-                                <div class="img-square-wrapper">
-                                    <img class="" src="img/<%=rs2.getString("picture")%>" alt="hotel image" width="300" height="180">
-                                </div>
-                                <div class="card-body">
-                                    <h4 class="card-title"><%=rs2.getString("roomType")%></h4>
-                                    <h5 class="card-title">Booked date: <%=rs.getString("startDate")%></h5>
-                                    <h5 class="card-title">Day/Night: <%=rs.getString("duration")%></h5>
-                                    <h5 class="card-title">Total:RM <%=rs.getString("payment")%></h5>
+
+        <div class="container-fluid " >
+            <div class="row justify-content-center" >
+                <div class="col-5 mt-3">
+                    <div class="card">
+                        <div class="card-horizontal">
+                            <div class="img-square-wrapper">
+                                <img class="" src="img/<%=rs2.getString("picture")%>" alt="hotel image" width="300" height="180">
+                            </div>
+                            <div class="card-body">
+                                <h4 class="card-title"><%=rs2.getString("roomType")%></h4>
+                                <h5 class="card-title">Booked date: <%=rs.getString("startDate")%></h5>
+                                <h5 class="card-title">Day/Night: <%=rs.getString("duration")%></h5>
+
+
+                                <form action="BookingController" method="get">
+                                    <input type="hidden" name="pic" value="<%=rs2.getString("picture")%>">
+                                    <input type="hidden" name="email" value="<% out.print(email);%>">
+                                    <input type="hidden" name="function" value="payment_main">
                                     <input name="bookingID" value="<%=rs.getInt("bookingID")%>" hidden>
                                     <%
-                                    if(rs.getBoolean("rate")){
+                                        if (rs.getBoolean("isPaid")) {
                                     %>
-                                    <input type="submit" value="Rate" disabled="">
+                                    <input type="submit" value="Pay" disabled="" >
                                     <%
-                                    }else{
+                                    } else {
                                     %>
-                                    
-                                    <input type="submit" value="Rate">
+
+                                    <input type="submit" value="Pay" style="background-color: #999900; color: white; ">
                                     <%
-                                    }
+                                        }
                                     %>
-                                </div>
-                            </div>  
-                        </div>
+                                </form> 
+
+                                <form action="rating.jsp" method="get">
+                                    <input name="bookingID" value="<%=rs.getInt("bookingID")%>" hidden>
+                                    <%
+                                        if (rs.getBoolean("rate")) {
+                                    %>
+                                    <input type="submit" value="Rate" disabled="" >
+                                    <%
+                                    } else {
+                                    %>
+
+                                    <input type="submit" value="Rate" style="background-color: #999900; color: white; ">
+                                    <%
+                                        }
+                                    %>
+                                </form> 
+                            </div>
+                        </div>  
                     </div>
                 </div>
             </div>
-        </form> 
+        </div>
+
+
         <%
                     }
                 }

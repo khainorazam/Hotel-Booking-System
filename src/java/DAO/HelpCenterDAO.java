@@ -5,12 +5,13 @@
  */
 package DAO;
 
-import Model.User;
-import java.util.List;
+import Model.HelpCenter;
 
-public interface UserDAO {
-    public void register(User u);
-    public void update(User u);
+/**
+ *
+ * @author khain
+ */
+public interface HelpCenterDAO {
+    public void message(HelpCenter h);
+    public void reply(HelpCenter h);
 }
-
-

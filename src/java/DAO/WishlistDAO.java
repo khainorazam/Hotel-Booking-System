@@ -5,12 +5,13 @@
  */
 package DAO;
 
-import Model.User;
-import java.util.List;
+import Model.Wishlist;
 
-public interface UserDAO {
-    public void register(User u);
-    public void update(User u);
+/**
+ *
+ * @author khain
+ */
+public interface WishlistDAO {
+    public void insertWishlist(Wishlist w);
+    public void removeWishlist(Wishlist w);
 }
-
-

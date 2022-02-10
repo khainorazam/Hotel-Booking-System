@@ -1,0 +1,106 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 31, 2021, 2:56:50 AM
+    Author     : Amir's pc
+*/
+
+.header-container{
+    background-color: white;
+}
+.header{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: black;
+    font-size: 50px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin-top: 25px;
+    text-align: center;
+}
+a {
+    text-decoration: none;
+
+
+}
+
+a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+.previous {
+    position: absolute;
+
+
+    color: white;
+}
+.middle{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+.flex-item{
+    width: 400px;
+    margin: 10px;
+    /*border: 3px solid black;*/
+
+}
+
+.img{
+    min-height: 200px;
+
+
+}
+img{
+    max-width:100%;
+    max-height:100%;
+}
+
+.details{
+    min-height: 200px;
+
+}
+.total{
+    min-height: 100px;
+
+    align-self: flex-end;
+
+}
+
+/* CSS */
+.button-1 {
+    background-color: #EA4C89;
+    border-radius: 8px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    height: 40px;
+    line-height: 20px;
+    list-style: none;
+    margin: 10px;
+    outline: none;
+    padding: 10px 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: color 100ms;
+    vertical-align: baseline;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 125px;
+}
+
+.button-1:hover,
+.button-1:focus {
+    background-color: #F082AC;
+}
+

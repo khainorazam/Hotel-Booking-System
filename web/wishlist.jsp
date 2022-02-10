@@ -88,7 +88,7 @@
                                     <input name="roomType" value="<%=rs2.getString("roomType")%>" hidden>
                                     <input name="email" value="<%=email%>" hidden>
                                     <input type="submit" value="Book" >
-                                    <input type="submit" value="Remove" formaction="RemoveWishlist" style="background-color: #f44336; color: white; " >
+                                    <input onclick="return confirm('Are you sure you want to delete room from wishlist?');" type="submit" value="Remove" formaction="RemoveWishlist" style="background-color: #f44336; color: white; " >
                                     
                                 </div>
                             </div>  
@@ -105,6 +105,7 @@
                 ex.printStackTrace();
             }
         %>
+        
     </body>
 </html>
 

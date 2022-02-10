@@ -1,0 +1,152 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+div,
+input,
+p,
+a {
+    font-family: "Open Sans";
+    margin: 0px;
+}
+
+body {
+    margin: 10px auto;
+    padding: 1em 1em;
+    background-color: #D3D3D3;
+}
+
+h2{
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    background-color: #3500A6;
+    position: relative;
+    border-radius: 10px;
+    padding: 1em 1em;
+    color: white;
+}
+
+.container-fluid,
+.container {
+    max-width: 100%;
+}
+
+.card-container {
+    padding: 100px 0px;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+}
+
+.row{
+    max-width: 80%;
+    text-align: left;
+    background-color: #3500A6;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    padding: 1em 1em;
+    padding-top: 2em;
+    overflow: hidden;
+    position: relative;
+    margin: 10px auto;
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.dp{
+    /*background-color: #ffffff;*/
+    /*box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;*/
+    padding: 0.5em 0.5em;
+    overflow: hidden;
+    margin: 10px auto 20px;
+    display: block;
+    border-radius: 0.5px;
+    border-color: white;
+    text-align: center;
+}
+
+.wishlist{
+    margin: 10px auto 20px;
+    display: block;
+}
+
+input[type=submit],button {
+    display: inline-block;
+    background-color: black;
+    border-radius: 20px;
+    border: 4px double #cccccc;
+    color: white;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px;
+    width: 150px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    /*float: right;*/
+}
+
+button:hover {
+    background-color: #808080;
+    color: black;
+}
+
+form {
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 50px;
+}
+
+.value-button {
+    display: inline-block;
+    border: 1px solid #ddd;
+    margin: 0px;
+    width: 40px;
+    height: 20px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 11px 0;
+    background: #eee;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.value-button:hover {
+    cursor: pointer;
+}
+
+form #decrease {
+    margin-right: -4px;
+    border-radius: 8px 0 0 8px;
+}
+
+form #increase {
+    margin-left: -4px;
+    border-radius: 0 8px 8px 0;
+}
+
+form #input-wrap {
+    margin: 0px;
+    padding: 0px;
+}
+
+input#number {
+    text-align: center;
+    border: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 0px;
+    width: 40px;
+    height: 40px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

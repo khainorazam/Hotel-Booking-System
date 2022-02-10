@@ -191,7 +191,7 @@
         </script>
         <script>
             function myFunction() {
-                alert("Rating Successfull !");
+                alert("Rating Successful!");
             }
         </script>
     </body>  
